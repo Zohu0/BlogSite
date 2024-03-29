@@ -28,6 +28,11 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")))
 
 
+// Home route
+app.get("/", async(req, res) => {
+    const allBlogs = await Blog.find({})
+    res.render("blogs/home.ejs", {allBlogs})
+});
 
 
 // Blog route
@@ -36,11 +41,34 @@ app.get("/blogs", async (req, res) => {
     res.render("blogs/blog.ejs", {allBlogs})
 })
 
+
+// Add blog route
+app.get("/blogs/addblog", (req, res) => {
+    res.render("blogs/addblog.ejs")
+});
+
+
 // Blog show route
 app.get("/blogs/:id", async (req, res) => {
     let {id} = req.params;
     const blog = await Blog.findById(id);
     res.render("blogs/blogshow.ejs", {blog})
+})
+
+
+//Home latest blog show route
+app.get("/latest/:id", async (req, res) => {
+    let {id} = req.params;
+    const blog = await Blog.findById(id);
+    res.render("blogs/latestshow.ejs", {blog})
+})
+
+
+// Adding Blog Route
+app.post("/blogs", async (req, res) => {
+    const newBlog = new Blog(req.body.blog);
+    await newBlog.save();
+    res.redirect("/blogs");
 })
 
 
@@ -60,9 +88,6 @@ app.get("/blogs/:id", async (req, res) => {
 //     res.send("Successfull testing");
 // });
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

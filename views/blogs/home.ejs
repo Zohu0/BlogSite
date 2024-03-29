@@ -1,0 +1,15 @@
+<% layout('/layouts/boilerplate') -%>
+
+    <body>
+                <% for (let blog=allBlogs.length - 1; blog >= allBlogs.length - 9; blog--) { %>
+                    <div>
+                        <p>
+                            <a href="/<%= blog._id %>">
+                                <b><%= allBlogs[blog].title %></b>
+                            </a>
+                        </p>
+                    </div>
+                <% } %>
+
+
+    </body>

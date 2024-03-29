@@ -1,18 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogs</title>
-</head>
-<body>
-    <% for(let blog of allBlogs){ %>
-        <div>
-            <p>
-                <a href="/blogs/<%= blog._id %>"><b><%= blog.title %></b></a>
-            </p>
-        </div>
-    <% } %>
-    
-</body>
-</html>
+<% layout('/layouts/boilerplate') -%>
+
+    <body>
+        <% for(let blog of allBlogs){ %>
+            <div>
+                <p>
+                    <a href="/blogs/<%= blog._id %>"><b>
+                            <%= blog.title %>
+                        </b></a>
+                </p>
+            </div>
+            <% } %>
+
+
+                <% for (let blog=allBlogs.length - 5; blog < allBlogs.length; blog++) { %>
+                    <div>
+                        <p>
+                            <a href="/blogs/<%= blog._id %>">
+                                <b><%= allBlogs[blog].title %></b>
+                            </a>
+                        </p>
+                    </div>
+                    <% } %>
+
+
+    </body>

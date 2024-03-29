@@ -1,0 +1,40 @@
+<% layout('/layouts/boilerplate') -%>
+
+    <body>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <br>
+        <h3>Add New blog</h3>
+        <form method="POST" action="/blogs" novalidate class="needs-validation">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input name="blog[title]" placeholder="Enter The Title" type="text" class="form-control" required>
+                <div class="valid-feedback">Title Looks good!</div>
+                <div class="invalid-feedback">Please enter a valid title</div>
+            </div>
+            
+
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea name="blog[content]" placeholder="Enter the content"
+                    class="form-control" rows="10" cols="55" required></textarea>
+                    <div class="invalid-feedback">Please enter a short content</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="author" class="form-label">Author Name</label>
+                <input name="blog[author]" placeholder="Zohaib Azmi" type="text" class="form-control" required>
+                <div class="invalid-feedback">Please enter a valid author name</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input name="blog[image]" placeholder="Enter image URL/LINK" type="text" class="form-control">
+            </div>
+            <br>
+            <button class="btn btn-success">Add</button>
+            <br><br>
+        </form>
+        </div>
+        </div>
+    </body>
