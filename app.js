@@ -57,7 +57,7 @@ app.get("/blogs/:id", async (req, res) => {
 
 
 //Home latest blog show route
-app.get("/latest/:id", async (req, res) => {
+app.get("/:id", async (req, res) => {
     let {id} = req.params;
     const blog = await Blog.findById(id);
     res.render("blogs/latestshow.ejs", {blog})
