@@ -1,15 +1,27 @@
 <% layout('/layouts/boilerplate') -%>
 
-    <body>
-        <% for(let blog of allBlogs){ %>
-            <div>
-                <p>
-                    <a href="/blogs/<%= blog._id %>"><b>
-                            <%= blog.title %>
-                        </b></a>
-                </p>
+<body>
+    <h1 class="blogsHeading">Blogs</h1>
+    <% for(let blog of allBlogs){ %>
+        <div class="blogPageContainer">
+            <div class="blog-box">
+                <div class="image-section">
+                    <img src="<%= blog.image %>" alt="Error loading image" class="img-fluid">
+                </div>
+                <div class="blog-content">
+                    <h2 class="blog-title"><%= blog.title %></h2>
+                    <p class="author-name"><%= blog.author %></p>
+                    <% 
+                    // Adjust number of words based on device width passed from server
+                    let wordsToShow = (deviceWidth <= 600) ? 12 : 25;
+                    %>
+                    <p class="blog-content-blogpage"><%= blog.content.split(' ').slice(0, wordsToShow).join(' ') %></p>
+                    <div class="blog-page-read-button">
+                        <a href="/blogs/<%= blog._id %>" class="btn card-readblog-link">Read Blog</a>
+                    </div>
+                </div>
             </div>
-            <% } %>
+        </div>
+    <% } %>
+</body>
 
-
-    </body>

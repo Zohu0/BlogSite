@@ -1,8 +1,14 @@
 <% layout('/layouts/boilerplate') -%>
 <body>
-    <div>
-       <b><p><%= blog.title %></p></b>
-       <b><p><%= blog.author %></p></b>
-       <b><p><%= blog.content %></p></b>
+    <div class="latestContainer">
+        <div class="blog-details">
+          <h1><%= blog.title %></h1>
+          <p>he i am rroot</p>
+          <p><%= blog.author %></p>
+          <img src="<%= blog.image %>" alt="Error loading image" class="blog-image">
+          <p><%= blog.content %></p>
+        </div>
     </div>
 </body>
+
+

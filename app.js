@@ -41,12 +41,19 @@ app.get("/", async (req, res) => {
 app.get("/blogs", async (req, res) => {
     try {
         const allBlogs = await Blog.find({});
-        res.render("blogs/blog.ejs", {allBlogs});
+        const deviceWidth = req.headers['device-width'] || 0;
+        res.render("blogs/blog.ejs", {allBlogs, deviceWidth});
     } catch (error) {
         console.error("Error rendering blog page:", error);
         res.status(500).send("Internal Server Error");
     }
 });
+
+// Addblog route
+app.get("/blogs/addblog", (req, res) => {
+    res.render("blogs/addblog.ejs");
+});
+
 
 // Blog show route
 app.get("/blogs/:id", async (req, res) => {
@@ -63,10 +70,7 @@ app.get("/blogs/:id", async (req, res) => {
     }
 });
 
-// Addblog route
-app.get("/blogs/addblog", (req, res) => {
-    res.render("blogs/addblog.ejs");
-});
+
 
 // AddingBlog Route
 app.post("/blogs", async (req, res) => {
@@ -80,17 +84,6 @@ app.post("/blogs", async (req, res) => {
     }
 });
 
-// Home latest blog show route
-app.get("/:id", async (req, res) => {
-    try {
-        const { id } = req.params;
-        const blog = await Blog.findById(id);
-        res.render("blogs/latestshow.ejs", { blog });
-    } catch (error) {
-        console.error("Error rendering latest blog page:", error);
-        res.status(500).send("Internal Server Error");
-    }
-});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

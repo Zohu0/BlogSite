@@ -1,13 +1,21 @@
 <% layout('/layouts/boilerplate') -%>
 
 <body>
+    <h2 class="latestBlog">Latest Blog</h2>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 offset-1 card-container-div">
     <% allBlogs.slice(-9).reverse().forEach(blog => { %>
-        <div>
-            <p>
-                <a href="/blogs/<%= blog._id %>">
-                    <b><%= blog.title %></b>
-                </a>
-            </p>
+    <div class="card" style="width: 18rem;">
+        <img src="<%= blog.image %>" class="card-img-top" alt="error loading image">
+        <div class="card-body">
+          <h5 class="card-title"><%= blog.title %></h5>
+          <p class="card-text"><%= blog.content.split(' ').slice(0, 20).join(' ') %></p>
+          <div class="">
+          <a href="/blogs/<%= blog._id %>" class="btn card-readblog-link">Read Blog</a>
+          </div>
         </div>
+      </div>
     <% }) %>
+    </div>
 </body>
+
+
