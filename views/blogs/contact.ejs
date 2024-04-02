@@ -1,0 +1,38 @@
+<% layout('/layouts/boilerplate') -%>
+
+    <body>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <br>
+        <h3>Contact Us</h3>
+        <form method="POST" action="/contact" novalidate class="needs-validation">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input name="contact[name]" placeholder="Zohaib Azmi" type="text" class="form-control" required>
+                <div class="invalid-feedback">Please enter a valid name</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input name="contact[email]" placeholder="xyz@gmail.com" type="text" class="form-control" required>
+                <div class="invalid-feedback">Please enter a valid email address</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone No:</label>
+                <input name="contact[phone]" placeholder="+91 7007054350" type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="issue" class="form-label">Your Issue</label>
+                <textarea name="contact[issue]" placeholder="How can we help you?"
+                    class="form-control" rows="10" cols="55" required></textarea>
+                    <div class="invalid-feedback">Please enter a short issue</div>
+            </div>
+
+            <button class="btn btn-success">Submit</button>
+            <br><br>
+        </form>
+        </div>
+        </div>
+    </body>

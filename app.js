@@ -6,6 +6,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const Blog = require("./models/blog.js");
+const Contact = require("./models/contact.js");
 
 const MONGO_URL = 'mongodb://127.0.0.1:27017/blog';
 
@@ -50,8 +51,20 @@ app.get("/blogs", async (req, res) => {
 });
 
 // Addblog route
-app.get("/blogs/addblog", (req, res) => {
+app.get("/addblog", (req, res) => {
     res.render("blogs/addblog.ejs");
+});
+
+
+// Contact route
+app.get("/contact", (req, res) => {
+    res.render("blogs/contact.ejs");
+});
+
+
+// About route
+app.get("/about", (req, res) => {
+    res.render("blogs/about.ejs");
 });
 
 
@@ -78,6 +91,17 @@ app.post("/blogs", async (req, res) => {
         const newBlog = new Blog(req.body.blog);
         await newBlog.save();
         res.redirect("/blogs");
+    } catch (error) {
+        console.error("Error adding new blog:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.post("/contact", async (req, res) => {
+    try {
+        const newContact = new Contact(req.body.contact);
+        await newContact.save();
+        res.redirect("/contact");
     } catch (error) {
         console.error("Error adding new blog:", error);
         res.status(500).send("Internal Server Error");
