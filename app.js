@@ -8,7 +8,7 @@ const ejsMate = require("ejs-mate");
 const Blog = require("./models/blog.js");
 const Contact = require("./models/contact.js");
 
-const MONGO_URL = 'mongodb://0.0.0.0:27017/blog';
+const MONGO_URL = 'mongodb://127.0.0.1:27017/blog';
 
 const main = async () => {
     await mongoose.connect(MONGO_URL);
